@@ -15,9 +15,10 @@
 
 
   <link rel="stylesheet" href="./css/style.css" />
-  <link rel="stylesheet" href="./css/main.css" />
+ 
+  <script src="java/window.js" defer></script>
+  <script src="java/gamburger.js" defer></script>
 
-  <script src="scripts/script.js" defer></script>
 </head>
 
 <body>
@@ -31,14 +32,14 @@
             class="header-logo-image" alt="site logo" />
         </a>
 
-        <ul class="header-menu-list">
+        <ul class="header-menu list">
           <li class="header-menu-item"><a class="header-menu-link" href="#">Home</a></li>
           <li class="header-menu-item"><a class="header-menu-link" href="#made">How it's made?</a></li>
           <li class="header-menu-item"><a class="header-menu-link" href="#loved">Chocolate is loved</a></li>
         </ul>
       </nav>
 
-      <ul class="header-soc-list">
+      <ul class="header-soc list">
         <li class="header-soc-item"><a class="header-soc-link" href="" target="_blank" rel="noopener noreferrer">
             <svg class="header-soc-icon" width="24" height="24">
               <use href="./images/icons.svg#icon-facebook"></use>
@@ -60,19 +61,62 @@
           </a>
         </li>
       </ul>
+      <button  id="open-modal-btn"  class="menu-open-btn"><svg class="menu-icon" width="28" height="28">
+          <use href="./images/icons.svg#icon-gamburger" >
+          </use>
+        </svg>
+      
+      </button>
+    </div>
+
+
+
+    <div class="mob-menu">
+      <div>
+      <button class="menu-close-btn">X</button>
+      <ul class="mob-menu-list list">
+        <li class="mob-menu-item"><a class="mob-menu-link" href="#">Home</a></li>
+        <li class="mob-menu-item"><a class="mob-menu-link" href="#made">How it's made?</a></li>
+        <li class="mob-menu-item"><a class="mob-menu-link" href="#loved">Chocolate is loved</a></li>
+      </ul>
+    </div>
+      <ul class="mob-soc list">
+        <li class="mob-soc-item"><a class="mob-soc-link link" href="" target="_blank" rel="noopener noreferrer">
+            <svg class="mob-soc-icon" width="24" height="24">
+              <use href="./images/icons.svg#icon-facebook"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="mob-soc-item"><a class="mob-soc-link link" href="https://www.instagram.com/" target="_blank"
+            rel="noopener noreferrer">
+            <svg class="mob-soc-icon" width="24" height="24">
+              <use href="./images/icons.svg#icon-instagram"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="mob-soc-item">
+          <a class="mob-soc-link link" href="" target="_blank" rel="noopener noreferrer">
+            <svg class="mob-soc-icon" width="24" height="24">
+              <use href="./images/icons.svg#icon-twitter"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+
+
     </div>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero" id="hero">
       <div class="container hero-container">
         <h1 class="hero-title">
-          Treat yourself or a loved one to <br>our finest ingredients for a moment of pure delight!
+          Treat yourself or a loved one to our finest ingredients for a moment of pure delight!
         </h1>
         <div class="hero-buttons">
-          <button type="button" class="hero-btn">Buy now</button>
-          <a href="#made" class="hero-btn-link">How it's made</a>
-          <a href="#footer" class="hero-btn-down">scroll down</a>
+          <button type="button" class="hero-buy-btn">Buy now</button>
+          <a href="#made" class="hero-anchor-btn link">How it's made</a>
+          <a href="#footer" class="hero-bottom-btn link">scroll down</a>
         </div>
       </div>
     </section>
@@ -171,8 +215,16 @@
 
         <div class="made-wrap">
 
-          <img src="./images/made-img.jpeg" alt="liquid chocolate" width="600" height="400" class="made-img">
+          <picture class="made-picture">
 
+            <source srcset="./images/made-img.jpeg 1x, made-img-2x.jpeg 2x" media="(min-width: 1166)">
+            <source srcset="./images/made-img-tab.jpeg 1x, made-img-tab-2x.jpeg 2x" media="(min-width: 768)">
+            <source srcset="./images/made-img-mob.jpeg 1x, made-img-mob-2x.jpeg 2x" media="(max-width: 767)">
+
+            <img src="./images/made-img.jpeg" alt="liquid chocolate" width="600" height="400" class="made-img">
+          </picture>
+
+         
           <div class="made-content">
             <h3 class="made-subtitle">Try our chocolates today and discover the perfect balance of flavor</h3>
             <ul class="made-list">
@@ -215,7 +267,12 @@
         <h2 class="products-title section-title">Our <span>products</span></h2>
         <ul class="products-list">
           <li class="products-item">
-            <img src="./images/products-img-1.jpeg" alt="ORANGE" width="230" height="201" class="products-img">
+            <img 
+            srcset="
+            ./images/products-img-1.jpeg 1x, 
+            ./images/products-img-1-2x.jpeg 2x
+            "
+            src="./images/products-img-1.jpeg" alt="ORANGE" width="230" height="201" class="products-img">
             <h3 class="products-subtitle">ORANGE</h3>
             <p class="products-item-text">Dark chocolate</p>
             <button class="products-btn" type="button" id="click">45 UAH</button>
@@ -364,7 +421,96 @@
             </p>
           </li>
         </ul>
-        <button type="button" class="loved-btn">Leave a review</button>
+        <button  type="button" class="loved-btn"  onclick="openModal()">Leave a review</button>
+        <div class="backdrop">
+          <div class="modal" id="myModal">
+           
+            <button onclick="closeModal()" type="button" class="modal-btn" id="close-btn">
+              <svg class="modal-btn-icon" width="28" height="28">
+                <use href="./images/icons2.svg#icon-close-black"></use>
+              </svg>
+            </button>
+            <p class="modal-title section-title">LEAVE A REVIEW ABOUT <br><span>OUR CHOCOLATE</span>
+            </p>
+      
+            <form class="modal-form">
+      
+      <div class="modal-field">
+         <label for="user-name" class="modal-label">Name</label>
+      <div class="modal-input-wrap">
+            <input 
+            type="text" 
+            name="user-name"
+            class="modal-input" 
+            placeholder="Enter name" 
+            required
+            id="user-name"
+             />
+             <svg class="modal-icon-first" width="24px" height="24px">
+              <use href="./images/icons2.svg#icon-men"></use>
+             </svg>
+            </div>
+          </div>
+      
+      
+            <div class="modal-field">
+             <label for="user-email"  class="modal-label">Email</label>
+             <div class="modal-input-wrap">
+            <input 
+            type="email" 
+            name="user-email" 
+            class="modal-input" 
+            placeholder="Enter email" 
+            required
+            id="user-email"/>
+            <svg class="modal-icon" width="24px" height="24px">
+              <use href="./images/icons2.svg#icon-mail"></use>
+             </svg>
+            </div>
+          </div>
+      
+      
+      
+            <div class="modal-field">
+            <label for="user-phone"  class="modal-label">Phone</label>
+            <div class="modal-input-wrap">
+            <input type="phone" 
+            name="user-phone" 
+            class="modal-input" 
+            placeholder="Enter phone" 
+            required
+            value="+380"
+            id="user-phone"/>
+            <svg class="modal-icon" width="24px" height="24px">
+              <use href="./images/icons2.svg#icon-phone"></use>
+             </svg>
+            </div>
+          </div>
+      
+          <div class="modal-field">
+            <label for="user-text"  class="modal-label">Comment</label>
+           <textarea name="user-text" id="user-text" class="modal-text"
+           placeholder="Enter-text"></textarea>
+          </div>
+      
+          <div class="modal-field ">
+            <input type="checkbox" 
+            name="modal-check" 
+            id="modal-check" 
+            class="check-input visually-hidden"
+            />
+      
+            <label for="modal-check" class="check-text">
+              <span>
+                <svg class="modal-check-icon" width="10" height="10">
+                <use href="./images/icons2.svg#icon-vector">
+                </use>
+              </svg>
+            </span>"I accept the terms and conditions of the 
+            <a href=""> Privacy Policy"</a>
+            </label>
+          </div>
+           
     </div>
     </section>
   </main>
@@ -379,7 +525,7 @@
       <div class="footer-top">
 
         <p class="footer-text">
-          <span>Chocolate</span> a delicious cure for a bad day
+          <span>Chocolate</span> a delicious<br> cure for a bad day
         </p>
 
 
@@ -453,93 +599,7 @@
   
 
 
-  <div class="backdrop is open">
-    <div class="modal">
-      <button type="button" class="modal-btn" id="header">
-        <svg class="modal-btn-icon" width="28" height="28">
-          <use href="./images/icons2.svg#icon-close-black"></use>
-        </svg>
-      </button>
-      <p class="modal-title section-title">LEAVE A REVIEW ABOUT <br><span>OUR CHOCOLATE</span>
-      </p>
 
-      <form class="modal-form">
-
-<div class="modal-field">
-   <label for="user-name" class="modal-label">Name</label>
-<div class="modal-input-wrap">
-      <input 
-      type="text" 
-      name="user-name"
-      class="modal-input" 
-      placeholder="Enter name" 
-      required
-      id="user-name"
-       />
-       <svg class="modal-icon-first" width="24px" height="24px">
-        <use href="./images/icons2.svg#icon-men"></use>
-       </svg>
-      </div>
-    </div>
-
-
-      <div class="modal-field">
-       <label for="user-email"  class="modal-label">Email</label>
-       <div class="modal-input-wrap">
-      <input 
-      type="email" 
-      name="user-email" 
-      class="modal-input" 
-      placeholder="Enter email" 
-      required
-      id="user-email"/>
-      <svg class="modal-icon" width="24px" height="24px">
-        <use href="./images/icons2.svg#icon-mail"></use>
-       </svg>
-      </div>
-    </div>
-
-
-
-      <div class="modal-field">
-      <label for="user-phone"  class="modal-label">Phone</label>
-      <div class="modal-input-wrap">
-      <input type="phone" 
-      name="user-phone" 
-      class="modal-input" 
-      placeholder="Enter phone" 
-      required
-      value="+380"
-      id="user-phone"/>
-      <svg class="modal-icon" width="24px" height="24px">
-        <use href="./images/icons2.svg#icon-phone"></use>
-       </svg>
-      </div>
-    </div>
-
-    <div class="modal-field">
-      <label for="user-text"  class="modal-label">Comment</label>
-     <textarea name="user-text" id="user-text" class="modal-text"
-     placeholder="Enter-text"></textarea>
-    </div>
-
-    <div class="modal-field ">
-      <input type="checkbox" 
-      name="modal-check" 
-      id="modal-check" 
-      class="check-input visually-hidden"
-      />
-
-      <label for="modal-check" class="check-text">
-        <span>
-          <svg class="modal-check-icon" width="10" height="10">
-          <use href="./images/icons2.svg#icon-vector">
-          </use>
-        </svg>
-      </span>"I accept the terms and conditions of the 
-      <a href=""> Privacy Policy"</a>
-      </label>
-    </div>
 
 
       <button type="submit" class="hero-btn">Send</button>
