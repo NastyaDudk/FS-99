@@ -30,8 +30,6 @@ modalElem.addEventListener('click', closeModal);
 
 
 
-
-
 const button = document.querySelector('.loved-btn');
 const modal = document.querySelector('.backdrop');
 
@@ -45,7 +43,10 @@ modal.style.cssText = `
 const close = event => {
   const target = event.target;
 
-  let span = document.getElementsByClassName("modal-btn")[0];
+  if(target === modal || target.closest('.modal-btn')) {
+
+    modal.style.opacity = 0;
+  }
 
   setTimeout(() => {
     modal.style.visibility = 'hidden';
@@ -59,6 +60,28 @@ const open = () => {
 
 button.addEventListener('click', open);
 modal.addEventListener('click', close);
+
+
+// $(function () {
+
+//   $('.open').click(function(){
+//     if ($(".modal").hasClass("is open")) {
+//       ('.modal').removeClass('is open');
+//     }
+//       else
+//       {
+//         $(".modal").addClass("is open");
+//       }
+//     });
+  
+//     $('.close').click(function(){
+//       $('.modal').removeClass('is open');
+//     });
+// });
+
+
+
+
 
 
 
